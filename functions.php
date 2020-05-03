@@ -40,3 +40,23 @@ add_shortcode( 'site_year', 'site_year' );
 //
 // Your code goes below
 //
+
+function change_custom_post_type_process() {
+	register_batch_process( array(
+		'name' => 'Change Custom Post Type',
+		'type' => 'post',
+		'args' => array(
+            'post_type' => 'teams',
+            'posts_per_page' => -1,
+		),
+		'callback' => 'process_feature_img_change',
+	) );
+}
+add_action( 'locomotive_init', 'change_custom_post_type_process' );
+
+function process_feature_img_change( $post ) {
+    $media = get_attached_media('image', $post);
+    $media = array_shift( $media );
+    $image_id = $media->ID;
+    set_post_thumbnail( $post->ID, $image_id );
+}
