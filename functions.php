@@ -43,7 +43,7 @@ add_shortcode( 'site_year', 'site_year' );
 
 function change_custom_post_type_process() {
 	register_batch_process( array(
-		'name' => 'Change Custom Post Type',
+		'name' => 'Change features image for teams',
 		'type' => 'post',
 		'args' => array(
             'post_type' => 'teams',
